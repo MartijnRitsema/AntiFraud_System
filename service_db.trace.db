@@ -1,0 +1,12 @@
+2024-08-13 13:36:31 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "users" not found (this database is empty); SQL statement:
+select u1_0."id",u1_0."name",u1_0."password",u1_0."username" from "users" u1_0 where upper(u1_0."username")=upper(?) [42104-214]
+2024-08-13 13:43:15 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "users" not found (this database is empty); SQL statement:
+select u1_0."id",u1_0."name",u1_0."password",u1_0."username" from "users" u1_0 where upper(u1_0."username")=upper(?) [42104-214]
+2024-08-13 13:47:02 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "users" not found (this database is empty); SQL statement:
+select u1_0."id",u1_0."name",u1_0."password",u1_0."username" from "users" u1_0 where upper(u1_0."username")=upper(?) [42104-214]
+2024-08-13 13:47:47 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "users" not found (this database is empty); SQL statement:
+select u1_0."id",u1_0."name",u1_0."password",u1_0."username" from "users" u1_0 where upper(u1_0."username")=upper(?) [42104-214]

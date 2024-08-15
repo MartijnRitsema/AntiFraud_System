@@ -1,0 +1,70 @@
+type: edu
+files:
+  - name: src/antifraud/AntiFraudApplication.java
+    visible: true
+    learner_created: false
+  - name: src/resources/application.properties
+    visible: true
+    learner_created: false
+  - name: build.gradle
+    visible: true
+    learner_created: false
+  - name: test/AntiFraudTest.java
+    visible: false
+    learner_created: false
+  - name: src/antifraud/DatabaseConfiguration.java
+    visible: true
+    learner_created: true
+  - name: src/antifraud/UserDetailsImpl.java
+    visible: true
+    learner_created: true
+  - name: src/antifraud/UserRepository.java
+    visible: true
+    learner_created: true
+  - name: src/antifraud/TransactionData.java
+    visible: true
+    learner_created: true
+  - name: src/antifraud/TransactionDto.java
+    visible: true
+    learner_created: true
+  - name: src/antifraud/SecurityConfiguration.java
+    visible: true
+    learner_created: true
+  - name: src/antifraud/TransactionStatus.java
+    visible: true
+    learner_created: true
+  - name: src/antifraud/RestAuthenticationEntryPoint.java
+    visible: true
+    learner_created: true
+  - name: src/antifraud/UserDetailsServiceImpl.java
+    visible: true
+    learner_created: true
+  - name: src/antifraud/UserResource.java
+    visible: true
+    learner_created: true
+  - name: src/antifraud/TransactionResource.java
+    visible: true
+    learner_created: true
+  - name: src/antifraud/User.java
+    visible: true
+    learner_created: true
+  - name: src/antifraud/UserRole.java
+    visible: true
+    learner_created: true
+feedback_link: https://hyperskill.org/learn/step/18069#comment
+status: Failed
+feedback:
+  message: |-
+    Wrong answer in test #3
+
+    POST /api/auth/user should respond with status code 201, responded: 500
+    Response body:
+    {
+      &quot;timestamp&quot; : &quot;2024-08-15T11:07:30.715+00:00&quot;,
+      &quot;status&quot; : 500,
+      &quot;error&quot; : &quot;Internal Server Error&quot;,
+      &quot;message&quot; : &quot;Could not commit JPA transaction&quot;,
+      &quot;path&quot; : &quot;/api/auth/user&quot;
+    }
+  time: "Thu, 15 Aug 2024 11:07:31 UTC"
+record: 3

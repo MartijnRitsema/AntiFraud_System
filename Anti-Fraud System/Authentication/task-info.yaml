@@ -1,0 +1,56 @@
+type: edu
+files:
+  - name: src/antifraud/AntiFraudApplication.java
+    visible: true
+    learner_created: false
+  - name: src/resources/application.properties
+    visible: true
+    learner_created: false
+  - name: build.gradle
+    visible: true
+    learner_created: false
+  - name: test/AntiFraudTest.java
+    visible: false
+    learner_created: false
+  - name: src/antifraud/TransactionData.java
+    visible: true
+    learner_created: true
+  - name: src/antifraud/TransactionResource.java
+    visible: true
+    learner_created: true
+  - name: src/antifraud/TransactionDto.java
+    visible: true
+    learner_created: true
+  - name: src/antifraud/SecurityConfiguration.java
+    visible: true
+    learner_created: true
+  - name: src/antifraud/RestAuthenticationEntryPoint.java
+    visible: true
+    learner_created: true
+  - name: src/antifraud/DatabaseConfiguration.java
+    visible: true
+    learner_created: true
+  - name: src/antifraud/User.java
+    visible: true
+    learner_created: true
+  - name: src/antifraud/UserRepository.java
+    visible: true
+    learner_created: true
+  - name: src/antifraud/UserDetailsImpl.java
+    visible: true
+    learner_created: true
+  - name: src/antifraud/UserDetailsServiceImpl.java
+    visible: true
+    learner_created: true
+  - name: src/antifraud/UserResource.java
+    visible: true
+    learner_created: true
+  - name: src/antifraud/TransactionStatus.java
+    visible: true
+    learner_created: true
+feedback_link: https://hyperskill.org/learn/step/18068#comment
+status: Solved
+feedback:
+  message: Congratulations!
+  time: "Wed, 14 Aug 2024 09:43:39 UTC"
+record: 2
