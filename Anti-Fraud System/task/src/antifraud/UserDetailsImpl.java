@@ -1,28 +1,32 @@
 package antifraud;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.Collections;
-import java.util.List;
 
 public class UserDetailsImpl implements UserDetails {
 
     private final String username;
     private final String password;
-    private final List<GrantedAuthority> rolesAndAuthorities;
+    private final Collection<? extends GrantedAuthority> authorities;
+    private final boolean accountNonLocked;
 
     public UserDetailsImpl(User user) {
         this.username = user.getUsername();
         this.password = user.getPassword();
-        this.rolesAndAuthorities = Collections.emptyList();
+        this.accountNonLocked = user.isAccountNonLocked();
+        this.authorities = Collections.singletonList(new SimpleGrantedAuthority("ROLE_" + user.getRole().name()));
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return rolesAndAuthorities;
+        return authorities;
     }
+
 
     @Override
     public String getPassword() {
@@ -41,7 +45,7 @@ public class UserDetailsImpl implements UserDetails {
 
     @Override
     public boolean isAccountNonLocked() {
-        return true;
+        return accountNonLocked;
     }
 
     @Override

@@ -1,5 +1,6 @@
 package antifraud;
 
+import org.springframework.boot.actuate.autoconfigure.observation.ObservationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -9,7 +10,6 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.authentication.www.BasicAuthenticationEntryPoint;
 
 @Configuration
 public class SecurityConfiguration {
@@ -18,29 +18,32 @@ public class SecurityConfiguration {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
                 .httpBasic(Customizer.withDefaults())
-                .csrf().disable()                           // For modifying requests via Postman
+                .csrf().disable()
                 .exceptionHandling(handing -> handing
-                        .authenticationEntryPoint(restAuthenticationEntryPoint()) // Handles auth error
+                        .authenticationEntryPoint(restAuthenticationEntryPoint())
                 )
-                .headers(headers -> headers.frameOptions().disable())           // for Postman, the H2 console
-                .authorizeHttpRequests(requests -> requests                     // manage access
+                .headers(headers -> headers.frameOptions().disable())
+                .authorizeHttpRequests(requests -> requests
                         .requestMatchers(HttpMethod.POST, "/api/auth/user").permitAll()
-                        .requestMatchers("/actuator/shutdown").permitAll()
-                                .requestMatchers("/error").permitAll()
-                .anyRequest().authenticated()
+                        .requestMatchers("/api/auth/list").hasAnyRole("ADMINISTRATOR", "SUPPORT")
+                        .requestMatchers(HttpMethod.DELETE, "/api/auth/user/**").hasRole("ADMINISTRATOR")
+                        .requestMatchers(HttpMethod.PUT, "/api/auth/role/**").hasRole("ADMINISTRATOR")
+                        .requestMatchers(HttpMethod.PUT, "/api/auth/access/**").hasRole("ADMINISTRATOR")
+                        .requestMatchers(HttpMethod.POST, "/api/antifraud/transaction/**").hasRole("MERCHANT")
+                        .requestMatchers("/error").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/actuator/shutdown").permitAll()
+                        .anyRequest().authenticated()
+
                 )
                 .sessionManagement(session -> session
-                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS) // no session
+                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 )
-                // other configurations
                 .build();
     }
 
     @Bean
-    public BasicAuthenticationEntryPoint restAuthenticationEntryPoint() {
-        BasicAuthenticationEntryPoint entryPoint = new BasicAuthenticationEntryPoint();
-        entryPoint.setRealmName("AntiFraudSystem");
-        return entryPoint;
+    public RestAuthenticationEntryPoint restAuthenticationEntryPoint() {
+        return new RestAuthenticationEntryPoint();
     }
 
     @Bean
